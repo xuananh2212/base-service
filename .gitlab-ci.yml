@@ -1,0 +1,19 @@
+deploy:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  only:
+    - develop
+  script:
+    - eval $(ssh-agent -s)
+    - bash -c 'ssh-add <(echo "$SSH_PRIVATE_KEY")'
+    - mkdir -p ~/.ssh
+    - ssh-keyscan -H $SSH_SERVER_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - >
+      ssh -t $SSH_USER@$SSH_SERVER_IP "
+      mkdir -p $SSH_PATH;
+      cd $SSH_PATH;
+      pwd;
+      bash script.sh;
+      "

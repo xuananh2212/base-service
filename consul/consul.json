@@ -1,0 +1,19 @@
+{
+  "datacenter": "dc",
+  "acl": {
+    "default_policy": "deny",
+    "enabled": false
+  },
+  "ui_config": {
+    "enabled": true
+  },
+  "server": true,
+  "enable_script_checks": true,
+  "node_name": "consul-server-1",
+  "domain": "consul",
+  "bootstrap_expect": 1,
+  "client_addr": "192.168.18.224",
+  "primary_datacenter": "dc",
+  "data_dir": "./data",
+  "bind_addr": "192.168.18.224"
+}

@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  consul:
+    image: hashicorp/consul:1.11.0
+    container_name: consul
+    restart: always
+    volumes:
+      # - ./server1.json:/consul/config/server1.json:ro
+      - ./consul.json:/consul/config/consul.json:ro
+      - ./certs/:/consul/config/certs/:ro
+    networks:
+      taxnet-net:
+        ipv4_address: 192.168.18.6
+    ports:
+      - "8500:8500"
+      - "8600:8600/tcp"
+      - "8600:8600/udp"
+networks:
+  taxnet-net:
+    external: true
